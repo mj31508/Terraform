@@ -1,26 +1,11 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 3.0"
-    }
-  }
-}
-
 provider "aws" {
-  region = "us-east-1"
+  region  = "us-west-2"
 }
-resource "aws_instance" "example" {
-  ami           = "ami-40d28157"
+
+resource "aws_instance" "helloworld" {
+  ami           = "ami-09dd2e08d601bff67"
   instance_type = "t2.micro"
-
-  user_data = <<-EOF
-              #!/bin/bash
-              echo "Hello, World" > index.html
-              nohup busybox httpd -f -p 8080 &
-              EOF
-
-  tags = {
-    Name = "terraform-example"
+  tags   =    {
+    Name = "HelloWorld"
   }
 }
